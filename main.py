@@ -34,6 +34,8 @@ if args.data == 'cifar10':
     args.num_classes = 10
 elif args.data == 'cifar100':
     args.num_classes = 100
+elif args.data == 'Imagenette':
+    args.num_classes = 10
 else:
     args.num_classes = 1000
 
@@ -88,6 +90,7 @@ def main():
 
     cudnn.benchmark = True
 
+#    import pdb; pdb.set_trace()
     train_loader, val_loader, test_loader = get_dataloaders(args)
 
     if args.evalmode is not None:

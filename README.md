@@ -36,6 +36,17 @@ python3 main.py --data-root /PATH/TO/CIFAR100 --data cifar100 --save /PATH/TO/SA
                 -j 16
 ```
 
+#### Train an MSDNet (block=5, step=4) on Imagenette:
+
+```
+
+python3 -i -m pdb main.py --data-root /PATH/TO/Imagenette --data Imagenette --save /home/ubuntu/msdnet-imagenette/ \
+                          --arch msdnet --batch-size 64 --epochs 90 --nBlocks 5 \
+                          --stepmode even --step 4 --base 4 --nChannels 32 --growthRate 16 \
+                          --grFactor 1-2-4-4 --bnFactor 1-2-4-4 \
+                          --gpu 0 -j 4 \
+```
+
 #### Train an MSDNet (block=5, step=4) on ImageNet:
 
 ```
