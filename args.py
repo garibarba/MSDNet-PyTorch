@@ -74,7 +74,7 @@ optim_group.add_argument('--start-epoch', default=0, type=int, metavar='N',
 optim_group.add_argument('-b', '--batch-size', default=64, type=int,
                          metavar='N', help='mini-batch size (default: 64)')
 optim_group.add_argument('--optimizer', default='sgd',
-                         choices=['sgd', 'rmsprop', 'adam'], metavar='N',
+                         choices=['sgd', 'rmsprop', 'adam', 'radam'], metavar='N',
                          help='optimizer (default=sgd)')
 optim_group.add_argument('--lr', '--learning-rate', default=0.1, type=float,
                          metavar='LR',

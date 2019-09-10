@@ -76,9 +76,20 @@ def main():
 
     criterion = nn.CrossEntropyLoss().cuda()
 
-    optimizer = torch.optim.SGD(model.parameters(), args.lr,
-                                momentum=args.momentum,
-                                weight_decay=args.weight_decay)
+    if args.optimizer == 'sgd':
+        optimizer = torch.optim.SGD(model.parameters(), args.lr,
+                                    momentum=args.momentum,
+                                    weight_decay=args.weight_decay)
+    elif args.optimizer == 'adam':
+        optimizer = torch.optim.Adam(model.parameters(), args.lr,
+                                     weight_decay=args.weight_decay)
+    elif args.optimizer == 'radam':
+        from radam import RAdam
+        optimizer = RAdam(model.parameters(), args.lr,
+                          weight_decay=args.weight_decay)
+    else:
+        raise NotImplementedError("Wrong optimizer.")
+    
 
     if args.resume:
         checkpoint = load_checkpoint(args)
@@ -90,7 +101,6 @@ def main():
 
     cudnn.benchmark = True
 
-#    import pdb; pdb.set_trace()
     train_loader, val_loader, test_loader = get_dataloaders(args)
 
     if args.evalmode is not None:
